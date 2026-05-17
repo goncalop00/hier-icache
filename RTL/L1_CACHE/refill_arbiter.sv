@@ -188,11 +188,18 @@ module refill_arbiter
 
         if (r_arbiter_r_valid)
           r_arbiter_reqing <= 1'b0;
-        else if(arbiter_req_o & arbiter_gnt_i)
+        else if(arbiter_req_o & arbiter_gnt_i) begin
           r_arbiter_reqing <= 1'b1;
+          $display("[REFILL_ARB @%0t] REQ_GNT addr=%h", $time, arbiter_addr_o);
+        end
 
-        if (~r_arbiter_r_valid & r_arbiter_reqing)
+        if (arbiter_r_valid_i) begin
           r_arbiter_r_data  <= arbiter_r_data_i;
+          $display("[REFILL_ARB @%0t] CAPTURE addr=%h reqing=%b w3=%h w2=%h w1=%h w0=%h",
+            $time, arbiter_addr_o, r_arbiter_reqing,
+            arbiter_r_data_i[127:96], arbiter_r_data_i[95:64],
+            arbiter_r_data_i[63:32], arbiter_r_data_i[31:0]);
+        end
       end
     end
 

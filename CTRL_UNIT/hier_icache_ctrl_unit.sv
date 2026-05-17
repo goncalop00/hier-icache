@@ -418,6 +418,7 @@ generate
           (BASE_PERF_CNT+2):   begin speriph_slave_r_rdata_o       <= 32'hF1CA_B01A ;  end
           (BASE_PERF_CNT+3):   begin speriph_slave_r_rdata_o       <= 32'hF1CA_B01A ;  end
 
+`ifdef FEATURE_ICACHE_STAT
           (BASE_PERF_CNT+4):   begin speriph_slave_r_rdata_o       <= global_L1_hit;   end
           (BASE_PERF_CNT+5):   begin speriph_slave_r_rdata_o       <= global_L1_trans; end
           (BASE_PERF_CNT+6):   begin speriph_slave_r_rdata_o       <= global_L1_miss;  end
@@ -426,6 +427,7 @@ generate
           (BASE_PERF_CNT+8):   begin speriph_slave_r_rdata_o       <= global_L2_hit;   end
           (BASE_PERF_CNT+9):   begin speriph_slave_r_rdata_o       <= global_L2_trans; end
           (BASE_PERF_CNT+10):  begin speriph_slave_r_rdata_o       <= global_L2_miss;  end
+`endif
 
 
           (BASE_PERF_CNT+12):  begin speriph_slave_r_rdata_o       <= perf_cnt_L1[0][0];  end

@@ -550,5 +550,16 @@ module icache_hier_top
       else $error("AXI input ID width must be larger than $clog2(SH_NB_BANKS) which is %d but width was %d", $clog2(SH_NB_BANKS), AXI_ID);
   end
 `endif
-   
+
+  always_ff @(posedge clk) begin
+    if (axi_master_arvalid_o & axi_master_arready_i)
+      $display("[ICACHE_AXI_OUT @%0t] AR id=%h addr=%h bank=%0d",
+               $time, axi_master_arid_o, axi_master_araddr_o,
+               axi_master_arid_o[AXI_ID-1 -: $clog2(SH_NB_BANKS)]);
+    if (axi_master_rvalid_i & axi_master_rready_o)
+      $display("[ICACHE_AXI_OUT @%0t] R  id=%h data_w3=%h bank=%0d",
+               $time, axi_master_rid_i, axi_master_rdata_i[127:96],
+               axi_master_rid_i[AXI_ID-1 -: $clog2(SH_NB_BANKS)]);
+  end
+
 endmodule // icache_hier_top
