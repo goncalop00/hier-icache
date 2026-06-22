@@ -1,4 +1,15 @@
-# Structure of the REPO
+# hier-icache — dissertation fork
+
+> **This is a dissertation fork.** It carries the `refill_arbiter`
+> capture-on-valid fix for the Streaming Engine evaluation in the master's
+> dissertation *Configurable Streaming Engine for RISC-V Systems* by Gonçalo Pereira (FEUP).
+> See [`README.thesis.md`](README.thesis.md) for the dissertation context
+> and the link back to the top-level repository.
+> The upstream documentation is preserved below.
+
+---
+
+## Structure of the REPO
 
 - README.md
 -  RTL
