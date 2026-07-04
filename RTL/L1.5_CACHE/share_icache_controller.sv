@@ -1013,19 +1013,6 @@ module share_icache_controller #(
 
   endgenerate
 
-
-  // always_ff @(posedge clk) begin
-  //   if (fetch_req_i & fetch_grant_o & ((CS == DISABLED_ICACHE) || (CS == WAIT_EMPTYING_DIS_ICACHE)))
-  //     $display("[SHARE_CTRL B%0d @%0t] AR_PUSH addr=%h UID=%h fifo_gnt=%b arrd=%b",
-  //              CACHE_ID, $time, init_araddr_o, fetch_ID_i, fifo_align_addr_gnt, init_arready_i);
-  //   if (init_rvalid_i & ((CS == DISABLED_ICACHE) || (CS == WAIT_EMPTYING_DIS_ICACHE)))
-  //     $display("[SHARE_CTRL B%0d @%0t] R_POP  UID=%h data_w3=%h fifo_gnt=%b",
-  //              CACHE_ID, $time, fetch_ID_int, init_rdata_i[0][127:96], fifo_align_addr_gnt);
-  //   if (fetch_req_i & ~fetch_grant_o & (CS == DISABLED_ICACHE))
-  //     $display("[SHARE_CTRL B%0d @%0t] STALL  addr=%h UID=%h fifo_gnt=%b arrd=%b",
-  //              CACHE_ID, $time, fetch_addr_i, fetch_ID_i, fifo_align_addr_gnt, init_arready_i);
-  // end
-
   generic_fifo #(
     .DATA_WIDTH( 1 + ICACHE_ID_WIDTH ),
     .DATA_DEPTH( 4 )
